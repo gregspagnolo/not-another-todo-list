@@ -8,32 +8,34 @@
 
 	<body>
 		<h1>Todo List</h1>
+
 		<div>
-			<button onclick="handlers.displayTodos()">Display Todos</button>
 			<button onclick="handlers.toggleAll()">Toggle All</button>
 		</div>
 
 		<div>
-			<button onclick="handlers.addTodo()">Add</button>
 			<input id="addTodoTextInput" type="text">
+			<button onclick="handlers.addTodo()">Add New Todo</button>
 		</div>
 
 		<div>
+			<input id="changeTodoPositionInput" type="number" placeholder="Todo Position">
+			<input id="changeTodoTextInput" type="text" placeholder="Todo Text">
 			<button onclick="handlers.changeTodo()">Change Todo</button>
-			<input id="changeTodoPositionInput" type="number">
-			<input id="changeTodoTextInput" type="text">
 		</div>
 
 		<div>
+			<input id="deleteTodoPositionInput" type="number" placeholder="Todo Position">
 			<button onclick="handlers.deleteTodo()">Delete</button>
-			<input id="deleteTodoPositionInput" type="number">
 		</div>
 
 		<div>
+			<input id="toggleCompletedPositionInput" type="number" placeholder="Todo Position">
 			<button onclick="handlers.toggleCompleted()">Toggle Completed</button>
-			<input id="toggleCompletedPositionInput" type="number">
 		</div>
 
+		<ul>
+		</ul>
 
 		<script src="script.js"></script>
 	</body>
