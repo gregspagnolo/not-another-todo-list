@@ -17,27 +17,22 @@ var todoList = {
 		todo.completed = !todo.completed;
 	},
 	toggleAll: function() {
-		var todos = this.todos;
 		var totalTodos = this.todos.length;
 		var completedTodos = 0;
 
-		var toggle = function(val) {
-			for (var i = 0; i < totalTodos; i++) {
-				todos[i].completed = val;
-			}
-		};
-		// Get completed todos
-		for (var idx = 0; idx < totalTodos; idx++) {
-			if (this.todos[idx].completed === true) {
+		this.todos.forEach(function(todo) {
+			if (todo.completed === true) {
 				completedTodos++;
 			}
-		}
+		});
 
-		if (completedTodos === totalTodos) {
-			toggle(false);
-		} else {
-			toggle(true);
-		}
+		this.todos.forEach(function(todo) {
+			if (completedTodos === totalTodos) {
+				todo.completed = false;
+			} else {
+				todo.completed = true;
+			}
+		});
 	}
 };
 
@@ -76,9 +71,9 @@ var view = {
 	displayTodos: function() {
 		var todosUl = document.querySelector('ul');
 		todosUl.innerHTML = '';
-		for (var idx=0; idx < todoList.todos.length; idx++) {
+	
+		todoList.todos.forEach(function(todo, position) {
 			var todoLi = document.createElement('li');
-			var todo = todoList.todos[idx];
 			var todoTextWithCompletion = '';
 
 			if(todo.completed === true) {
@@ -87,11 +82,11 @@ var view = {
 				todoTextWithCompletion = '( ) ' + todo.todoText;
 			}
 
-			todoLi.id = idx;
+			todoLi.id = position;
 			todoLi.textContent = todoTextWithCompletion;
 			todoLi.appendChild(this.createDeleteButton());
 			todosUl.appendChild(todoLi);
-		}
+		}, this);
 	},
 	createDeleteButton: function() {
 		var deleteButton = document.createElement('button');
